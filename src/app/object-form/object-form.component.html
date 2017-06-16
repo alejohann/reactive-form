@@ -1,0 +1,7 @@
+<md-tab-group>
+  <md-tab label="{{category.label}}" *ngFor="let category of categories">
+    <app-attribute-input *ngFor="let attribute of attributesList | matchesCategory:category" [attribute]="attribute"></app-attribute-input>
+    <button md-raised-button (click)="addAttribute(category)">Add Attribute</button>
+  </md-tab>
+</md-tab-group>
+

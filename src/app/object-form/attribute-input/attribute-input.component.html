@@ -1,11 +1,23 @@
-<p>
-  {{attribute.category}}
+<form novalidate (ngSubmit)="saveAttribute()" [formGroup]="attributeForm" class="attribute-form">
   <p>
     <md-input-container class="example-full-width">
-      <input mdInput placeholder="Name">
+      <input formControlName="name" mdInput placeholder="Name">
     </md-input-container>
     <md-input-container class="example-full-width">
-      <textarea mdInput placeholder="Description"></textarea>
+      <input formControlName="description" mdInput placeholder="Description">
     </md-input-container>
   </p>
-</p>
+  <p>
+    <md-select formControlName="dataType" placeholder="Data type" selected="STRING">
+      <md-option *ngFor="let dataType of dataTypes" [value]="dataType.value">{{dataType.name}}</md-option>
+    </md-select>
+    <md-select formControlName="format" placeholder="Format" selected="NONE">
+      <md-option *ngFor="let format of formats" [value]="format.value">{{format.name}}</md-option>
+    </md-select>
+  </p>
+  <p>
+    <md-input-container class="example-full-width">
+      <input formControlName="defaultValue" mdInput placeholder="Default value">
+    </md-input-container>
+  </p>
+</form>

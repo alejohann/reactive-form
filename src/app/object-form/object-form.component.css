@@ -1,0 +1,17 @@
+:host {
+  box-sizing: border-box;
+  float: left;
+  width: 65%;
+}
+
+#tabs-group {
+  margin-bottom: 20px;
+}
+
+/deep/ .mat-tab-body-content {
+  padding-top: 20px;
+}
+
+#save-button {
+  float: right;
+}

@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
+
 import { Attribute } from './model/attribute.model';
+import { AttributeInputComponent } from './attribute-input/attribute-input.component'
 import { categoryList } from './constants/category-list';
+import { AttributesService } from '../shared/attributes.service';
 
 @Component({
   selector: 'app-object-form',
@@ -10,15 +14,25 @@ import { categoryList } from './constants/category-list';
 export class ObjectFormComponent implements OnInit {
 
   categories = categoryList;
-  attributesList: Array<Attribute> = [];
+  mainForm: FormGroup;
 
-  constructor() { }
+  constructor(
+    public AttributesService: AttributesService,
+    private formBuilder: FormBuilder) { }
 
   ngOnInit() {
+    this.mainForm = this.formBuilder.group({
+      attributes: this.formBuilder.array([])
+    });
+    this.mainForm.valueChanges.subscribe(state => {
+      // console.log('form changed', JSON.stringify(state.attributes, null, 2));
+      this.AttributesService.updateOutput(state.attributes);
+    });
   }
 
   addAttribute(category) {
-    this.attributesList.push(Object.assign(new Attribute, {category: category.label}));
+    (<FormArray>this.mainForm.controls.attributes).push(
+      AttributeInputComponent.buildAttributeForm(new Attribute, category.label)
+    );
   }
-
 }

@@ -1,7 +1,9 @@
-<md-tab-group>
-  <md-tab label="{{category.label}}" *ngFor="let category of categories">
-    <app-attribute-input *ngFor="let attribute of attributesList | matchesCategory:category" [attribute]="attribute"></app-attribute-input>
-    <button md-raised-button (click)="addAttribute(category)">Add Attribute</button>
-  </md-tab>
-</md-tab-group>
-
+<form [formGroup]="mainForm">
+  <md-tab-group formArrayName="attributes" id="tabs-group">
+    <md-tab label="{{category.label}}" *ngFor="let category of categories" class="attribute-container">
+      <app-attribute-input *ngFor="let attribute of mainForm.get('attributes').controls | matchesCategory:category" [attributeForm]="attribute"></app-attribute-input>
+      <button md-raised-button (click)="addAttribute(category)" color="accent">Add Attribute</button>
+    </md-tab>
+  </md-tab-group>
+  <button md-raised-button id="save-button" type="submit" [disabled]="mainForm.invalid" color="primary">Save</button>
+</form>

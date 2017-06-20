@@ -1,6 +1,5 @@
 import { Component, OnInit, forwardRef } from '@angular/core';
 import { FormControl, FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
-import { UUID } from 'angular2-uuid';
 
 import { Attribute } from '../shared/models/attribute.model';
 import { AttributeInputComponent } from './attribute-input/attribute-input.component'
@@ -20,7 +19,7 @@ export class ObjectFormComponent implements OnInit, Validators {
 
   constructor(
     private attributesService: AttributesService,
-    private formBuilder: FormBuilder) { }
+    private formBuilder: FormBuilder) {}
 
   ngOnInit() {
     this.categories = categoryList;
@@ -33,7 +32,7 @@ export class ObjectFormComponent implements OnInit, Validators {
     });
   }
 
-  buildAttributeForm(id, category) {
+  buildAttributeForm(category) {
     const attribute = new Attribute;
     return new FormGroup({
       name: new FormControl(attribute.name, [Validators.required, this.validateName.bind(this)]),
@@ -41,19 +40,19 @@ export class ObjectFormComponent implements OnInit, Validators {
       category: new FormControl(category, Validators.required),
       dataType: new FormControl(attribute.dataType, Validators.required),
       format: new FormControl(attribute.format, Validators.required),
-      defaultValue: new FormControl({value: attribute.defaultValue, disabled: 'true'}),
+      deviceResourceType: new FormControl({value: attribute.deviceResourceType, disabled: 'true'}),
+      defaultValue: new FormControl(attribute.defaultValue),
       minRange: new FormControl(attribute.minRange),
       maxRange: new FormControl(attribute.maxRange),
       unitOfMeasure: new FormControl(attribute.unitOfMeasure),
       precision: new FormControl(attribute.precision),
       accuracy: new FormControl(attribute.accuracy),
-      enumerations: new FormControl(attribute.enumerations),
-      id: new FormControl(id)
+      enumerations: new FormControl(attribute.enumerations)
     });
   }
 
   addAttribute(category) {
-    this.attributesService.addAttribute(this.buildAttributeForm(UUID.UUID(), category.label));
+    this.attributesService.addAttribute(this.buildAttributeForm(category.label));
   }
 
   public validateName(nameControl) {

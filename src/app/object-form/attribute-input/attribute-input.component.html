@@ -1,9 +1,9 @@
 <form novalidate (ngSubmit)="saveAttribute()" [formGroup]="attributeForm" class="attribute-form">
   <p>
-    <md-input-container class="example-full-width">
+    <md-input-container>
       <input formControlName="name" mdInput placeholder="Name">
     </md-input-container>
-    <md-input-container class="example-full-width">
+    <md-input-container>
       <input formControlName="description" mdInput placeholder="Description">
     </md-input-container>
   </p>
@@ -16,9 +16,19 @@
     </md-select>
   </p>
   <p>
-    <md-input-container class="example-full-width">
+    <md-input-container>
+      <input formControlName="deviceResourceType" mdInput placeholder="Disabled">
+    </md-input-container>
+    <md-input-container>
       <input formControlName="defaultValue" mdInput placeholder="Default value">
     </md-input-container>
   </p>
+  <form novalidate [formGroup]="enumerationsForm" class="enumerations-form"
+    *ngIf="attributeForm.controls.format.value === 'NONE'">
+    <md-input-container>
+      <input formControlName="enumerationLabel" mdInput placeholder="New enumeration">
+    </md-input-container>
+    <button md-raised-button (click)="addEnumeration()" color="accent">Add</button>
+  </form>
   <button md-raised-button (click)="removeAttribute(attrIndex)" color="warn">Remove Attribute</button>
 </form>

@@ -4,7 +4,8 @@ export class Attribute {
   category: String = '';
   dataType: String = 'STRING';
   format: String = 'NONE';
-  defaultValue: String = 'Disabled';
+  deviceResourceType: String = 'Disabled';
+  defaultValue: String = '';
   minRange: Number = null;
   maxRange: Number = null;
   unitOfMeasure: Number = null;

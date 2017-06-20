@@ -11,7 +11,7 @@
     <md-select formControlName="dataType" placeholder="Data type" selected="STRING">
       <md-option *ngFor="let dataType of dataTypes" [value]="dataType.value">{{dataType.name}}</md-option>
     </md-select>
-    <md-select formControlName="format" placeholder="Format" selected="NONE">
+    <md-select formControlName="format" placeholder="Format" selected="NONE" [disabled]="attributeForm.get('dataType').value === 'OBJECT'">
       <md-option *ngFor="let format of formats" [value]="format.value">{{format.name}}</md-option>
     </md-select>
   </p>
@@ -20,7 +20,7 @@
       <input formControlName="deviceResourceType" mdInput placeholder="Disabled">
     </md-input-container>
     <md-input-container>
-      <input formControlName="defaultValue" mdInput placeholder="Default value">
+      <input formControlName="defaultValue" mdInput placeholder="Default value" [disabled]="disableControls">
     </md-input-container>
   </p>
   <form novalidate [formGroup]="enumerationsForm" class="enumerations-form"

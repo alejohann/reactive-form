@@ -40,7 +40,7 @@ export class ObjectFormComponent implements OnInit, Validators {
       category: new FormControl(category, Validators.required),
       dataType: new FormControl(attribute.dataType, Validators.required),
       format: new FormControl(attribute.format, Validators.required),
-      deviceResourceType: new FormControl({value: attribute.deviceResourceType, disabled: 'true'}),
+      deviceResourceType: new FormControl({value: attribute.deviceResourceType, disabled: true}),
       defaultValue: new FormControl(attribute.defaultValue),
       minRange: new FormControl(attribute.minRange),
       maxRange: new FormControl(attribute.maxRange),

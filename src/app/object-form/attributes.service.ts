@@ -29,6 +29,10 @@ export class AttributesService {
     (<Attribute>this.attributesList.at(index).value).enumerations.push(label);
   }
 
+  removeEnumeration(index) {
+    (<Attribute>this.attributesList.at(index).value).enumerations.splice(index);
+  }
+
   updateOutput(updatedAttributes) {
     this.updatedFormSource.next(updatedAttributes);
   }

@@ -1,7 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MdButtonModule, MdTabsModule, MdInputModule, MdSelectModule, MdOptionModule } from '@angular/material';
+import {
+  MdButtonModule,
+  MdTabsModule,
+  MdInputModule,
+  MdSelectModule,
+  MdOptionModule,
+  MdChipsModule,
+  MdIconModule } from '@angular/material';
 
 import { ObjectFormComponent } from './object-form.component';
 import { AttributeInputComponent } from './attribute-input/attribute-input.component';
@@ -18,6 +25,8 @@ import { SharedModule } from '../shared/shared.module';
     MdInputModule,
     MdSelectModule,
     MdOptionModule,
+    MdChipsModule,
+    MdIconModule,
     SharedModule.forRoot()
   ],
   declarations: [ObjectFormComponent, AttributeInputComponent],

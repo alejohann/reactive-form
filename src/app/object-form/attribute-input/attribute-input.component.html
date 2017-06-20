@@ -1,4 +1,4 @@
-<form novalidate (ngSubmit)="saveAttribute()" [formGroup]="attributeForm" class="attribute-form">
+<form novalidate [formGroup]="attributeForm" id="attribute-form">
   <p>
     <md-input-container>
       <input formControlName="name" mdInput placeholder="Name">
@@ -28,7 +28,13 @@
     <md-input-container>
       <input formControlName="enumerationLabel" mdInput placeholder="New enumeration">
     </md-input-container>
-    <button md-raised-button (click)="addEnumeration()" color="accent">Add</button>
+    <button md-mini-fab (click)="addEnumeration()" color="primary" [disabled]="enumerationsForm.get('enumerationLabel').value === ''"><md-icon>add</md-icon></button>
+    <md-chip-list>
+      <md-basic-chip *ngFor="let enum of attributeForm.controls.enumerations.value; let enumIndex = index">
+        {{enum}}
+        <span (click)="removeEnumeration(enumIndex)" class="remove-enum">x</span>
+      </md-basic-chip>
+    </md-chip-list>
   </form>
-  <button md-raised-button (click)="removeAttribute(attrIndex)" color="warn">Remove Attribute</button>
+  <button md-mini-fab (click)="removeAttribute(attrIndex)" color="warn" id="remove-attribute-button"><md-icon>delete</md-icon></button>
 </form>

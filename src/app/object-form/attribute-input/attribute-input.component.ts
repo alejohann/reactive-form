@@ -36,6 +36,10 @@ export class AttributeInputComponent {
     this.enumerationsForm.get('enumerationLabel').setValue('');
   }
 
+  removeEnumeration(index) {
+    this.AttributesService.removeEnumeration(this.attrIndex);
+  }
+
   removeAttribute() {
     this.AttributesService.removeAttribute(this.attrIndex);
   }

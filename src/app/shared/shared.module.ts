@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { FilterCategoryPipe } from './matches-category.pipe';
-import { AttributesService } from './attributes.service';
 
 @NgModule({
   declarations: [FilterCategoryPipe],
@@ -13,8 +12,7 @@ import { AttributesService } from './attributes.service';
 export class SharedModule {
   static forRoot() {
     return {
-      ngModule: SharedModule,
-      providers: [AttributesService]
+      ngModule: SharedModule
     };
   }
 };

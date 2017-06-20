@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { dataTypesList } from '../constants/data-types';
-import { formatsList } from '../constants/formats';
+import { FormGroup, FormControl } from '@angular/forms';
+import { dataTypesList } from '../../shared/constants/data-types';
+import { formatsList } from '../../shared/constants/formats';
+import { AttributesService } from '../attributes.service';
 
 @Component({
   selector: 'app-attribute-input',
@@ -12,24 +13,13 @@ import { formatsList } from '../constants/formats';
 export class AttributeInputComponent {
 
   @Input() attributeForm: FormGroup;
+  @Input() attrIndex: number;
   dataTypes: Array<Object> = dataTypesList;
   formats: Array<Object> = formatsList;
 
-  static buildAttributeForm(attribute, category) {
-    return new FormGroup({
-      name: new FormControl(attribute.name, Validators.required),
-      description: new FormControl(attribute.description),
-      category: new FormControl(category, Validators.required),
-      dataType: new FormControl(attribute.dataType, Validators.required),
-      format: new FormControl(attribute.format, Validators.required),
-      defaultValue: new FormControl({value: attribute.defaultValue, disabled: 'true'}),
-      rangeMin: new FormControl(attribute.rangeMin),
-      rangeMax: new FormControl(attribute.rangeMax),
-      unitOfMeasure: new FormControl(attribute.unitOfMeasure),
-      precision: new FormControl(attribute.precision),
-      accuracy: new FormControl(attribute.accuracy),
-      enumerations: new FormControl(attribute.enumerations)
-    });
-  }
+  constructor(private AttributesService: AttributesService) { }
 
+  removeAttribute() {
+    this.AttributesService.removeAttribute(this.attrIndex);
+  }
 }

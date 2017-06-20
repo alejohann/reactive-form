@@ -5,6 +5,7 @@ import { MdButtonModule, MdTabsModule, MdInputModule, MdSelectModule, MdOptionMo
 
 import { ObjectFormComponent } from './object-form.component';
 import { AttributeInputComponent } from './attribute-input/attribute-input.component';
+import { AttributesService } from './attributes.service';
 
 import { SharedModule } from '../shared/shared.module';
 
@@ -21,7 +22,7 @@ import { SharedModule } from '../shared/shared.module';
   ],
   declarations: [ObjectFormComponent, AttributeInputComponent],
   exports: [ObjectFormComponent, AttributeInputComponent],
-  providers: []
+  providers: [AttributesService]
 })
 
 export class ObjectFormModule { }

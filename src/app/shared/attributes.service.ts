@@ -35,6 +35,10 @@ export class AttributesService {
     );
   }
 
+  private getAttributeIndex(attribute) {
+    return this.getAttributes().value.indexOf(attribute);
+  }
+
   private validateName(nameControl) {
     let duplicates = 0;
     const attributesArray = this.getAttributes();
@@ -54,20 +58,20 @@ export class AttributesService {
     this.attributesList.push(this.buildAttributeForm(category));
   }
 
-  addEnumeration(index, label) {
-    (<Attribute>this.attributesList.at(index).value).enumerations.push(label);
+  addEnumeration(attribute, label) {
+    (<Attribute>this.attributesList.at(this.getAttributeIndex(attribute)).value).enumerations.push(label);
   }
 
   getAttributes() {
     return this.attributesList;
   }
 
-  removeEnumeration(attrIndex, enumIndex) {
-    (<Attribute>this.attributesList.at(attrIndex).value).enumerations.splice(enumIndex, 1);
+  removeEnumeration(attribute, enumIndex) {
+    (<Attribute>this.attributesList.at(this.getAttributeIndex(attribute)).value).enumerations.splice(enumIndex, 1);
   }
 
   removeAttribute(attribute) {
-    this.attributesList.removeAt(this.getAttributes().value.indexOf(attribute));
+    this.attributesList.removeAt(this.getAttributeIndex(attribute));
   }
 
   updateOutput(updatedAttributes) {

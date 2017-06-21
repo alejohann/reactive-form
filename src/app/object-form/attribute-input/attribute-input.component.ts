@@ -33,6 +33,7 @@ export class AttributeInputComponent implements OnInit {
       if (state === 'OBJECT' && this.attributeForm.get('format').enabled) {
         this.attributeForm.get('format').disable();
         this.attributeForm.get('defaultValue').disable();
+        this.attributeForm.get('enumerations').setValue([]);
       } else {
         this.attributeForm.get('format').enable();
         this.attributeForm.get('defaultValue').enable();
@@ -45,6 +46,8 @@ export class AttributeInputComponent implements OnInit {
       } else {
         this.attributeForm.get('minRange').clearValidators();
         this.attributeForm.get('maxRange').clearValidators();
+        this.attributeForm.get('minRange').reset();
+        this.attributeForm.get('maxRange').reset();
       }
     });
   }

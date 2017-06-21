@@ -20,6 +20,7 @@ form {
   padding-right: 22px;
   font-size: 12px;
   outline: none;
+  margin-right: 10px;
 }
 
 .mat-chip span.remove-enum {

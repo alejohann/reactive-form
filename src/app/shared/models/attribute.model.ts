@@ -8,7 +8,7 @@ export class Attribute {
   defaultValue: String = '';
   minRange: Number = null;
   maxRange: Number = null;
-  unitOfMeasure: Number = null;
+  unitOfMeasurement: String = 'mm';
   precision: Number = null;
   accuracy: Number = null;
   enumerations: String[] = [];

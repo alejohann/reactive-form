@@ -7,8 +7,6 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
-
 ### Prerequisites
 
 Make sure you have Node 6.9.0 or higher, together with NPM 3 properly installed (https://nodejs.org/en/download/)
@@ -23,7 +21,9 @@ Install Angular CLI
 npm install -g @angular/cli
 ```
 
-Navigate to the project root directory to install NPM dependencies
+Navigate to the project root directory
+
+Install NPM dependencies
 
 ```
 npm install

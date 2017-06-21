@@ -4,6 +4,11 @@
   width: 65%;
 }
 
+/deep/ .mat-tab-body {
+  border-bottom: 1px solid #eee;
+  padding-bottom: 20px;
+}
+
 /deep/ .mat-tab-body-content {
   padding-top: 20px;
 }

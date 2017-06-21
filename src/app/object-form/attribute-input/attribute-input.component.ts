@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 import { dataTypesList } from '../../shared/constants/data-types';
 import { formatsList } from '../../shared/constants/formats';
 import { AttributesService } from '../attributes.service';
@@ -18,11 +19,16 @@ export class AttributeInputComponent implements OnInit {
   dataTypes: Array<Object> = dataTypesList;
   formats: Array<Object> = formatsList;
 
-  constructor(private attributesService: AttributesService, private enumerationsFormBuilder: FormBuilder) {
+  constructor(
+    private attributesService: AttributesService,
+    private groupBuilder: FormBuilder) {
     this.buildEnumerationsForm();
   }
 
   ngOnInit() {
+    this.attributeForm.valueChanges.debounceTime(50).subscribe(state => {
+      this.attributeForm.updateValueAndValidity();
+    });
     this.attributeForm.get('dataType').valueChanges.subscribe(state => {
       if (state === 'OBJECT' && this.attributeForm.get('format').enabled) {
         this.attributeForm.get('format').disable();
@@ -32,28 +38,37 @@ export class AttributeInputComponent implements OnInit {
         this.attributeForm.get('defaultValue').enable();
       }
     });
+    this.attributeForm.get('format').valueChanges.debounceTime(100).subscribe(state => {
+      if (state === 'NUMBER') {
+        this.attributeForm.get('minRange').setValidators([Validators.required]);
+        this.attributeForm.get('maxRange').setValidators([Validators.required]);
+      } else {
+        this.attributeForm.get('minRange').clearValidators();
+        this.attributeForm.get('maxRange').clearValidators();
+      }
+    });
   }
 
   buildEnumerationsForm() {
-    this.enumerationsForm = this.enumerationsFormBuilder.group({
+    this.enumerationsForm = this.groupBuilder.group({
       enumerationLabel: ''
     })
   }
 
   addEnumeration() {
     this.attributesService.addEnumeration(
-      this.attrIndex,
+      this.attributeForm.value,
       this.enumerationsForm.get('enumerationLabel').value
     );
-    this.enumerationsForm.get('enumerationLabel').setValue('');
+    this.enumerationsForm.get('enumerationLabel').reset();
   }
 
   removeEnumeration(index) {
-    this.attributesService.removeEnumeration(this.attrIndex);
+    this.attributesService.removeEnumeration(this.attributeForm.value, index);
   }
 
   removeAttribute() {
-    this.attributesService.removeAttribute(this.attrIndex);
+    this.attributesService.removeAttribute(this.attributeForm.value);
   }
 
 }

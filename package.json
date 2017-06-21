@@ -1,6 +1,8 @@
 {
   "name": "object-maker",
   "version": "0.0.0",
+  "author": "Johann Garrido <johann.gz@gmail.com>",
+  "description": "Nested Reactive Form with validations and real-time values output",
   "license": "MIT",
   "scripts": {
     "ng": "ng",

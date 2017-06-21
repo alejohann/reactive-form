@@ -11,7 +11,7 @@
     <md-select formControlName="dataType" placeholder="Data type" selected="STRING">
       <md-option *ngFor="let dataType of dataTypes" [value]="dataType.value">{{dataType.name}}</md-option>
     </md-select>
-    <md-select formControlName="format" placeholder="Format" selected="NONE" [disabled]="attributeForm.get('dataType').value === 'OBJECT'">
+    <md-select formControlName="format" placeholder="Format" selected="NONE">
       <md-option *ngFor="let format of formats" [value]="format.value">{{format.name}}</md-option>
     </md-select>
   </p>
@@ -20,7 +20,7 @@
       <input formControlName="deviceResourceType" mdInput placeholder="Disabled">
     </md-input-container>
     <md-input-container>
-      <input formControlName="defaultValue" mdInput placeholder="Default value" [disabled]="disableControls">
+      <input formControlName="defaultValue" mdInput placeholder="Default value">
     </md-input-container>
   </p>
   <form novalidate [formGroup]="enumerationsForm" class="enumerations-form"
@@ -36,5 +36,13 @@
       </md-basic-chip>
     </md-chip-list>
   </form>
+  <div *ngIf="attributeForm.controls.format.value === 'NUMBER'">
+    <md-input-container>
+      <input formControlName="minRange" mdInput placeholder="Range min" type="number">
+    </md-input-container>
+    <md-input-container>
+      <input formControlName="maxRange" mdInput placeholder="Range max" type="number">
+    </md-input-container>
+  </div>
   <button md-mini-fab (click)="removeAttribute(attrIndex)" color="warn" id="remove-attribute-button"><md-icon>delete</md-icon></button>
 </form>

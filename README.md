@@ -1,28 +1,64 @@
-# ObjectMaker
+# ObjectMaker - Reactive Forms
+
+This project is a code challenge for a job position at Jobsity as a frontend developer.
+It uses nested Reactive Forms with FormArray, FormGroups and respective validations to real-time render an output object.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.1.1.
 
+## Getting Started
+
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+
+### Prerequisites
+
+Make sure you have Node 6.9.0 or higher, together with NPM 3 properly installed (https://nodejs.org/en/download/)
+
+### Installing
+
+Open a command line console (Run the below commands as root user to avoid permission errors).
+
+Install Angular CLI
+
+```
+npm install -g @angular/cli
+```
+
+Navigate to the project root directory to install NPM dependencies
+
+```
+npm install
+```
+
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+```
+ng serve
+```
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|module`.
+Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+```
+ng build
+```
 
-## Running unit tests
+The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Contributing
 
-## Running end-to-end tests
+This project is not intended to be forked
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
+## Authors
+
+* **Johann Garrido** - [urzolaj](https://github.com/urzolaj)
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
 ## Further help
+
+Contact the author via email: johann.gz@gmail.com
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).

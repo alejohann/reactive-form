@@ -14,7 +14,6 @@ export class AttributeInputComponent implements OnInit {
 
   @Input() attributeForm: FormGroup;
   @Input() attrIndex: number;
-  disableControls = false;
   enumerationsForm: FormGroup;
   dataTypes: Array<Object> = dataTypesList;
   formats: Array<Object> = formatsList;
@@ -25,12 +24,13 @@ export class AttributeInputComponent implements OnInit {
 
   ngOnInit() {
     this.attributeForm.get('dataType').valueChanges.subscribe(state => {
-      if (state === 'OBJECT' && this.attributeForm.get('defaultValue').enabled) {
+      if (state === 'OBJECT' && this.attributeForm.get('format').enabled) {
+        this.attributeForm.get('format').disable();
         this.attributeForm.get('defaultValue').disable();
       } else {
+        this.attributeForm.get('format').enable();
         this.attributeForm.get('defaultValue').enable();
       }
-      console.log('disable', this.disableControls);
     });
   }
 

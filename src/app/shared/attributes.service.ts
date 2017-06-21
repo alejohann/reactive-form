@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 import { FormBuilder, FormControl, FormArray, Validators } from '@angular/forms';
 
-import { Attribute } from '../shared/models/attribute.model';
-import { CustomValidators } from './validators/form.validator';
+import { Attribute } from './models/attribute.model';
+import { CustomValidators } from '../object-form/validators/form.validator';
 
 @Injectable()
 export class AttributesService {
@@ -14,7 +14,7 @@ export class AttributesService {
 
   constructor(private attributeFormBuilder: FormBuilder) { }
 
-  buildAttributeForm (category) {
+  private buildAttributeForm (category) {
     const attribute = new Attribute;
     return this.attributeFormBuilder.group({
       name: new FormControl(attribute.name, [Validators.required, this.validateName.bind(this)]),
@@ -35,30 +35,6 @@ export class AttributesService {
     );
   }
 
-  getAttributes() {
-    return this.attributesList;
-  }
-
-  removeAttribute(attribute) {
-    this.attributesList.removeAt(this.getAttributes().value.indexOf(attribute));
-  }
-
-  addAttribute(category) {
-    this.attributesList.push(this.buildAttributeForm(category));
-  }
-
-  addEnumeration(index, label) {
-    (<Attribute>this.attributesList.at(index).value).enumerations.push(label);
-  }
-
-  removeEnumeration(attrIndex, enumIndex) {
-    (<Attribute>this.attributesList.at(attrIndex).value).enumerations.splice(enumIndex, 1);
-  }
-
-  updateOutput(updatedAttributes) {
-    this.updatedFormSource.next(updatedAttributes);
-  }
-
   private validateName(nameControl) {
     let duplicates = 0;
     const attributesArray = this.getAttributes();
@@ -72,6 +48,30 @@ export class AttributesService {
         errors: true
       }
     }
+  }
+
+  addAttribute(category) {
+    this.attributesList.push(this.buildAttributeForm(category));
+  }
+
+  addEnumeration(index, label) {
+    (<Attribute>this.attributesList.at(index).value).enumerations.push(label);
+  }
+
+  getAttributes() {
+    return this.attributesList;
+  }
+
+  removeEnumeration(attrIndex, enumIndex) {
+    (<Attribute>this.attributesList.at(attrIndex).value).enumerations.splice(enumIndex, 1);
+  }
+
+  removeAttribute(attribute) {
+    this.attributesList.removeAt(this.getAttributes().value.indexOf(attribute));
+  }
+
+  updateOutput(updatedAttributes) {
+    this.updatedFormSource.next(updatedAttributes);
   }
 
 }

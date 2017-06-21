@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { dataTypesList } from '../../shared/constants/data-types';
 import { formatsList } from '../../shared/constants/formats';
-import { AttributesService } from '../attributes.service';
+import { AttributesService } from '../../shared/attributes.service';
 
 @Component({
   selector: 'app-attribute-input',
@@ -49,7 +49,7 @@ export class AttributeInputComponent implements OnInit {
     });
   }
 
-  buildEnumerationsForm() {
+  private buildEnumerationsForm() {
     this.enumerationsForm = this.groupBuilder.group({
       enumerationLabel: ''
     })

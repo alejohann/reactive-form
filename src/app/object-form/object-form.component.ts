@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormArray, FormBuilder } from '@angular/forms';
 
 import { categoryList } from '../shared/constants/category-list';
-import { AttributesService } from './attributes.service';
+import { AttributesService } from '../shared/attributes.service';
 
 @Component({
   selector: 'app-object-form',

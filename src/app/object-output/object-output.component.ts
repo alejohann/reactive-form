@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Attribute } from '../shared/models/attribute.model';
-import { AttributesService } from '../object-form/attributes.service';
+import { AttributesService } from '../shared/attributes.service';
 
 @Component({
   selector: 'app-object-output',

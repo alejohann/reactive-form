@@ -17,7 +17,7 @@ export class AttributesService {
   private buildAttributeForm (category) {
     const attribute = new Attribute;
     return this.attributeFormBuilder.group({
-      name: new FormControl(attribute.name, [Validators.required, this.validateName.bind(this)]),
+      name: new FormControl(attribute.name, [Validators.required]),
       description: new FormControl(attribute.description),
       category: new FormControl(category, Validators.required),
       dataType: new FormControl(attribute.dataType, Validators.required),
@@ -31,27 +31,18 @@ export class AttributesService {
       accuracy: new FormControl(attribute.accuracy),
       enumerations: new FormControl(attribute.enumerations)
     },
-      {validator: CustomValidators.validateRange}
+      {validator:
+        Validators.compose([
+          CustomValidators.validateRange,
+          CustomValidators.validatePrecision,
+          CustomValidators.validateAccuracy
+        ])
+      }
     );
   }
 
   private getAttributeIndex(attribute) {
     return this.getAttributes().value.indexOf(attribute);
-  }
-
-  private validateName(nameControl) {
-    let duplicates = 0;
-    const attributesArray = this.getAttributes();
-    if (attributesArray.value) {
-      duplicates = attributesArray.value.filter(function(item) {
-        return item.name === nameControl.value;
-      }).length;
-    }
-    return duplicates === 0 ? null : {
-      validateName : {
-        errors: true
-      }
-    }
   }
 
   addAttribute(category) {

@@ -11,6 +11,10 @@ form {
   border-bottom: 1px solid #ccc;
 }
 
+#attribute-form > div {
+  padding: 20px 0;
+}
+
 .mat-chip {
   display: inline-block;
   background-color: cornflowerblue;

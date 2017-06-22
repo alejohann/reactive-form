@@ -1,28 +1,28 @@
 <form novalidate [formGroup]="attributeForm" id="attribute-form">
-  <p>
+  <div>
     <md-input-container>
       <input formControlName="name" mdInput placeholder="Name">
     </md-input-container>
     <md-input-container>
       <input formControlName="description" mdInput placeholder="Description">
     </md-input-container>
-  </p>
-  <p>
+  </div>
+  <div>
     <md-select formControlName="dataType" placeholder="Data type" selected="STRING">
       <md-option *ngFor="let dataType of dataTypes" [value]="dataType.value">{{dataType.name}}</md-option>
     </md-select>
     <md-select formControlName="format" placeholder="Format" selected="NONE">
       <md-option *ngFor="let format of formats" [value]="format.value">{{format.name}}</md-option>
     </md-select>
-  </p>
-  <p>
+  </div>
+  <div>
     <md-input-container>
       <input formControlName="deviceResourceType" mdInput placeholder="Device Resource Type">
     </md-input-container>
     <md-input-container>
       <input formControlName="defaultValue" mdInput placeholder="Default value">
     </md-input-container>
-  </p>
+  </div>
   <form novalidate [formGroup]="enumerationsForm" class="enumerations-form"
     *ngIf="attributeForm.controls.format.value === 'NONE' && attributeForm.controls.dataType.value === 'STRING'">
     <md-input-container>
@@ -37,15 +37,15 @@
     </md-chip-list>
   </form>
   <div *ngIf="attributeForm.controls.format.value === 'NUMBER' && attributeForm.controls.dataType.value === 'STRING'">
-    <p>
+    <div>
       <md-input-container>
         <input formControlName="minRange" mdInput placeholder="Range min" type="number">
       </md-input-container>
       <md-input-container>
         <input formControlName="maxRange" mdInput placeholder="Range max" type="number">
       </md-input-container>
-    </p>
-    <p>
+    </div>
+    <div>
       <md-input-container>
         <input formControlName="unitOfMeasurement" mdInput placeholder="UoM">
       </md-input-container>
@@ -55,7 +55,7 @@
       <md-input-container>
         <input formControlName="accuracy" mdInput placeholder="Accuracy" type="number">
       </md-input-container>
-    </p>
+    </div>
   </div>
   <button md-mini-fab (click)="removeAttribute()" color="warn" id="remove-attribute-button"><md-icon>delete</md-icon></button>
 </form>

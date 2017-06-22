@@ -28,7 +28,7 @@
     <md-input-container>
       <input formControlName="enumerationLabel" mdInput placeholder="New enumeration">
     </md-input-container>
-    <button md-mini-fab (click)="addEnumeration()" color="primary" [disabled]="enumerationsForm.get('enumerationLabel').value === ''"><md-icon>add</md-icon></button>
+    <button md-mini-fab (click)="addEnumeration()" color="primary" [disabled]="!this.enumerationsForm.get('enumerationLabel').value"><md-icon>add</md-icon></button>
     <md-chip-list>
       <md-basic-chip *ngFor="let enum of attributeForm.controls.enumerations.value; let enumIndex = index">
         {{enum}}

@@ -81,10 +81,6 @@ export class AttributeInputComponent implements OnInit {
     this.enumerationsForm.get('enumerationLabel').reset();
   }
 
-  addEnumerationDisabled() {
-    return !this.enumerationsForm.get('enumerationLabel').value.length
-  }
-
   removeAttribute() {
     this.attributesService.removeAttribute(this.attributeForm.value);
   }

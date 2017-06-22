@@ -3,6 +3,7 @@ import { FormGroup, FormArray, FormBuilder } from '@angular/forms';
 
 import { categoryList } from '../shared/constants/category-list';
 import { AttributesService } from '../shared/attributes.service';
+import { CustomValidators } from '../object-form/validators/form.validator';
 
 @Component({
   selector: 'app-object-form',
@@ -27,6 +28,10 @@ export class ObjectFormComponent implements OnInit {
     });
     this.mainForm.valueChanges.subscribe(state => {
       this.attributesService.updateOutput(state.attributes);
+      // this.attributesFormArray.controls.forEach((attribute) => {
+      //   attribute.setValidators(CustomValidators.validateName.bind(this));
+      //   attribute.get('name').updateValueAndValidity();
+      // })
     });
   }
 

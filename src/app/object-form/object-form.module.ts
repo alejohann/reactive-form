@@ -11,6 +11,7 @@ import {
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { ObjectFormComponent } from './object-form.component';
+import { CustomValidators } from './validators/form.validator';
 import { AttributeInputComponent } from './attribute-input/attribute-input.component';
 import { AttributesService } from '../shared/attributes.service';
 
@@ -31,7 +32,7 @@ import { SharedModule } from '../shared/shared.module';
   ],
   declarations: [ObjectFormComponent, AttributeInputComponent],
   exports: [ObjectFormComponent, AttributeInputComponent],
-  providers: [AttributesService]
+  providers: [AttributesService, CustomValidators]
 })
 
 export class ObjectFormModule { }

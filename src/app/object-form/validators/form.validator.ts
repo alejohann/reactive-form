@@ -1,8 +1,11 @@
 import { AbstractControl } from '@angular/forms';
+// import { AttributesService } from '../../shared/attributes.service';
 
 export class CustomValidators {
 
-  static validateRange(attrControl: AbstractControl) {
+  // constructor(private attributesService: AttributesService) {}
+
+  validateRange(attrControl: AbstractControl) {
     const minRangeControl = attrControl.get('minRange');
     const maxRangeControl = attrControl.get('maxRange');
     const precisionControl = attrControl.get('precision');
@@ -21,7 +24,7 @@ export class CustomValidators {
     }
   }
 
-  static validatePrecision(attrControl: AbstractControl) {
+  validatePrecision(attrControl: AbstractControl) {
     const minRangeControl = attrControl.get('minRange');
     const maxRangeControl = attrControl.get('maxRange');
     const precisionControl = attrControl.get('precision');
@@ -32,7 +35,7 @@ export class CustomValidators {
     }
   }
 
-  static validateAccuracy(attrControl: AbstractControl) {
+  validateAccuracy(attrControl: AbstractControl) {
     const minRangeControl = attrControl.get('minRange');
     const maxRangeControl = attrControl.get('maxRange');
     const accuracyControl = attrControl.get('accuracy');
@@ -42,5 +45,14 @@ export class CustomValidators {
       return null
     }
   }
+
+  // validateName(nameControl: AbstractControl) {
+  //   const namesList: Array<String> = AttributesService.getAttributesNames();
+  //   if (namesList.indexOf(nameControl.value) >= 0) {
+  //     nameControl.setErrors({validateName: true});
+  //   } else {
+  //     return null
+  //   }
+  // }
 
 }

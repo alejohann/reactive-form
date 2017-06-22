@@ -8,16 +8,16 @@ import { CustomValidators } from '../object-form/validators/form.validator';
 @Injectable()
 export class AttributesService {
 
-  attributesList = new FormArray([]);
   private updatedFormSource = new Subject<Attribute[]>();
+  attributesList = new FormArray([]);
   updatedForm = this.updatedFormSource.asObservable();
 
-  constructor(private attributeFormBuilder: FormBuilder) { }
+  constructor(private attributeFormBuilder: FormBuilder, private formValidator: CustomValidators) { }
 
   private buildAttributeForm (category) {
     const attribute = new Attribute;
     return this.attributeFormBuilder.group({
-      name: new FormControl(attribute.name, [Validators.required]),
+      name: new FormControl(attribute.name, [Validators.required, this.validateName.bind(this)]),
       description: new FormControl(attribute.description),
       category: new FormControl(category, Validators.required),
       dataType: new FormControl(attribute.dataType, Validators.required),
@@ -33,15 +33,15 @@ export class AttributesService {
     },
       {validator:
         Validators.compose([
-          CustomValidators.validateRange,
-          CustomValidators.validatePrecision,
-          CustomValidators.validateAccuracy
+          this.formValidator.validateRange,
+          this.formValidator.validatePrecision,
+          this.formValidator.validateAccuracy
         ])
       }
     );
   }
 
-  private getAttributeIndex(attribute) {
+  getAttributeIndex(attribute) {
     return this.getAttributes().value.indexOf(attribute);
   }
 
@@ -67,6 +67,20 @@ export class AttributesService {
 
   updateOutput(updatedAttributes) {
     this.updatedFormSource.next(updatedAttributes);
+  }
+
+  validateName(nameControl) {
+    let duplicates = 0;
+    if (nameControl.value) {
+      duplicates = this.attributesList.value.filter(function(item) {
+        return item.name === nameControl.value;
+      }).length;
+    }
+    return duplicates === 0 ? null : {
+      validateName : {
+        errors: true
+      }
+    }
   }
 
 }

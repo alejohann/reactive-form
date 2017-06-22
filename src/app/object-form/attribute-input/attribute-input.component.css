@@ -1,6 +1,12 @@
-:host {
+/*:host {
   margin-bottom: 20px;
 }
+
+:host:after {
+  content: "";
+  display: block;
+  clear: both;
+}*/
 
 form {
   margin-bottom: 20px;

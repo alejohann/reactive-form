@@ -1,9 +1,11 @@
 <form [formGroup]="mainForm" novalidate>
   <md-tab-group formArrayName="attributes" id="tabs-group">
     <md-tab label="{{category.label}}" *ngFor="let category of categories" class="attribute-container">
-      <app-attribute-input *ngFor="let attribute of mainForm.get('attributes').controls | matchesCategory:category; let attrIndex = index" [attributeForm]="attribute">
-      </app-attribute-input>
-      <button md-raised-button (click)="addAttribute(category)" color="primary">Add Attribute</button>
+      <div class="attributes-container">
+        <app-attribute-input *ngFor="let attribute of mainForm.get('attributes').controls | matchesCategory:category; let attrIndex = index" [attributeForm]="attribute">
+        </app-attribute-input>
+      </div>
+      <button md-raised-button (click)="addAttribute(category)" color="primary" id="add-attribute">Add Attribute</button>
     </md-tab>
   </md-tab-group>
   <button md-raised-button id="save-button" [disabled]="mainForm.invalid" color="primary">Save</button>

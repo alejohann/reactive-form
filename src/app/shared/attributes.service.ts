@@ -41,10 +41,6 @@ export class AttributesService {
     );
   }
 
-  getAttributeIndex(attribute) {
-    return this.getAttributes().value.indexOf(attribute);
-  }
-
   addAttribute(category) {
     this.attributesList.push(this.buildAttributeForm(category));
   }
@@ -53,16 +49,20 @@ export class AttributesService {
     (<Attribute>this.attributesList.at(this.getAttributeIndex(attribute)).value).enumerations.push(label);
   }
 
+  getAttributeIndex(attribute) {
+    return this.getAttributes().value.indexOf(attribute);
+  }
+
   getAttributes() {
     return this.attributesList;
   }
 
-  removeEnumeration(attribute, enumIndex) {
-    (<Attribute>this.attributesList.at(this.getAttributeIndex(attribute)).value).enumerations.splice(enumIndex, 1);
-  }
-
   removeAttribute(attribute) {
     this.attributesList.removeAt(this.getAttributeIndex(attribute));
+  }
+
+  removeEnumeration(attribute, enumIndex) {
+    (<Attribute>this.attributesList.at(this.getAttributeIndex(attribute)).value).enumerations.splice(enumIndex, 1);
   }
 
   updateOutput(updatedAttributes) {

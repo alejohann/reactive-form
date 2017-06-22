@@ -12,8 +12,8 @@ import { CustomValidators } from '../object-form/validators/form.validator';
 })
 export class ObjectFormComponent implements OnInit {
 
-  categories: Array<Object>;
   attributesFormArray: FormArray;
+  categories: Array<Object>;
   mainForm: FormGroup;
 
   constructor(
@@ -21,17 +21,13 @@ export class ObjectFormComponent implements OnInit {
     private formBuilder: FormBuilder) {}
 
   ngOnInit() {
-    this.categories = categoryList;
     this.attributesFormArray = this.attributesService.getAttributes();
+    this.categories = categoryList;
     this.mainForm = this.formBuilder.group({
       attributes: this.attributesFormArray
     });
     this.mainForm.valueChanges.subscribe(state => {
       this.attributesService.updateOutput(state.attributes);
-      // this.attributesFormArray.controls.forEach((attribute) => {
-      //   attribute.setValidators(CustomValidators.validateName.bind(this));
-      //   attribute.get('name').updateValueAndValidity();
-      // })
     });
   }
 

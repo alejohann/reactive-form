@@ -1,9 +1,6 @@
 import { AbstractControl } from '@angular/forms';
-// import { AttributesService } from '../../shared/attributes.service';
 
 export class CustomValidators {
-
-  // constructor(private attributesService: AttributesService) {}
 
   validateRange(attrControl: AbstractControl) {
     const minRangeControl = attrControl.get('minRange');
@@ -45,14 +42,5 @@ export class CustomValidators {
       return null
     }
   }
-
-  // validateName(nameControl: AbstractControl) {
-  //   const namesList: Array<String> = AttributesService.getAttributesNames();
-  //   if (namesList.indexOf(nameControl.value) >= 0) {
-  //     nameControl.setErrors({validateName: true});
-  //   } else {
-  //     return null
-  //   }
-  // }
 
 }

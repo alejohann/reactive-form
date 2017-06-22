@@ -15,7 +15,6 @@ import { Enumeration } from '../../shared/models/enumeration.model';
 export class AttributeInputComponent implements OnInit {
 
   @Input() attributeForm: FormGroup;
-  @Input() attrIndex: number;
   enumerationsForm: FormGroup;
   dataTypes: Array<Object> = dataTypesList;
   formats: Array<Object> = formatsList;
